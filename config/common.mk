@@ -177,6 +177,7 @@ endif
 
 # Navbar
 PRODUCT_PACKAGES += \
+    GesturalNavigationOverlayHidden \
     GesturalNavigationOverlayLong \
     GesturalNavigationOverlayMedium
 
