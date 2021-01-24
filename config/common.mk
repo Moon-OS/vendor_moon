@@ -32,16 +32,16 @@ endif
 
 # Some permissions
 PRODUCT_COPY_FILES += \
-    vendor/aosp/config/permissions/backup.xml:system/etc/sysconfig/backup.xml \
-    vendor/aosp/config/permissions/privapp-permissions-lineagehw.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-lineagehw.xml
+    vendor/moon/config/permissions/backup.xml:system/etc/sysconfig/backup.xml \
+    vendor/moon/config/permissions/privapp-permissions-lineagehw.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-lineagehw.xml
 
 # Copy all custom init rc files
-$(foreach f,$(wildcard vendor/aosp/prebuilt/common/etc/init/*.rc),\
+$(foreach f,$(wildcard vendor/moon/prebuilt/common/etc/init/*.rc),\
     $(eval PRODUCT_COPY_FILES += $(f):system/etc/init/$(notdir $f)))
 
 # Enable Android Beam on all targets
 PRODUCT_COPY_FILES += \
-    vendor/aosp/config/permissions/android.software.nfc.beam.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.software.nfc.beam.xml
+    vendor/moon/config/permissions/android.software.nfc.beam.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.software.nfc.beam.xml
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
@@ -57,7 +57,7 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 
 # Power whitelist
 PRODUCT_COPY_FILES += \
-    vendor/aosp/config/permissions/custom-power-whitelist.xml:system/etc/sysconfig/custom-power-whitelist.xml
+    vendor/moon/config/permissions/custom-power-whitelist.xml:system/etc/sysconfig/custom-power-whitelist.xml
 
 # Do not include art debug targets
 PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
@@ -91,12 +91,12 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 
 # Overlays
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
-    vendor/aosp/overlay \
-    vendor/aosp/overlay-pixel \
+    vendor/moon/overlay \
+    vendor/moon/overlay-pixel \
 
 DEVICE_PACKAGE_OVERLAYS += \
-    vendor/aosp/overlay/common \
-    vendor/aosp/overlay-pixel/common
+    vendor/moon/overlay/common \
+    vendor/moon/overlay-pixel/common
 
 # TouchGestures
 PRODUCT_PACKAGES += \
@@ -188,24 +188,24 @@ endif
 #endif
 
 # Apex
-$(call inherit-product, vendor/aosp/config/apex.mk)
+$(call inherit-product, vendor/moon/config/apex.mk)
 
 # Audio
-$(call inherit-product, vendor/aosp/config/audio.mk)
+$(call inherit-product, vendor/moon/config/audio.mk)
 
 # Bootanimation
-$(call inherit-product, vendor/aosp/config/bootanimation.mk)
+$(call inherit-product, vendor/moon/config/bootanimation.mk)
 
 # Fonts
-$(call inherit-product, vendor/aosp/config/fonts.mk)
+$(call inherit-product, vendor/moon/config/fonts.mk)
 
 # GApps
 $(call inherit-product, vendor/gapps/config.mk)
 
 # OTA
-$(call inherit-product, vendor/aosp/config/ota.mk)
+$(call inherit-product, vendor/moon/config/ota.mk)
 
 # RRO Overlays
-$(call inherit-product, vendor/aosp/config/rro_overlays.mk)
+$(call inherit-product, vendor/moon/config/rro_overlays.mk)
 
 -include $(WORKSPACE)/build_env/image-auto-bits.mk

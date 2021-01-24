@@ -1,7 +1,7 @@
 # Build fingerprint
 ifeq ($(BUILD_FINGERPRINT),)
 BUILD_NUMBER_CUSTOM := $(shell date -u +%H%M)
-ifneq ($(filter OFFICIAL,$(CUSTOM_BUILD_TYPE)),)
+ifneq ($(filter OFFICIAL,$(MOON_BUILD_TYPE)),)
 BUILD_SIGNATURE_KEYS := release-keys
 else
 BUILD_SIGNATURE_KEYS := test-keys
@@ -18,7 +18,7 @@ ADDITIONAL_BUILD_PROPERTIES += \
 endif
 
 # Branding
-CUSTOM_BUILD_TYPE ?= UNOFFICIAL
+MOON_BUILD_TYPE ?= UNOFFICIAL
 
 CUSTOM_DATE_YEAR := $(shell date -u +%Y)
 CUSTOM_DATE_MONTH := $(shell date -u +%m)
@@ -29,15 +29,18 @@ CUSTOM_BUILD_DATE_UTC := $(shell date -d '$(CUSTOM_DATE_YEAR)-$(CUSTOM_DATE_MONT
 CUSTOM_BUILD_DATE := $(CUSTOM_DATE_YEAR)$(CUSTOM_DATE_MONTH)$(CUSTOM_DATE_DAY)-$(CUSTOM_DATE_HOUR)$(CUSTOM_DATE_MINUTE)
 
 CUSTOM_PLATFORM_VERSION := 11.0
+CUSTOM_MOON_VERSION := v1.0
+CUSTOM_MOON_VERSION_NAME := $(CUSTOM_MOON_VERSION)-$(MOON_BUILD_TYPE)-$(CUSTOM_BUILD_DATE)
+TARGET_PRODUCT_SHORT := $(subst moon_,,$(CUSTOM_BUILD))
 
-TARGET_PRODUCT_SHORT := $(subst aosp_,,$(CUSTOM_BUILD))
-
-CUSTOM_VERSION := PixelExperience_$(CUSTOM_BUILD)-$(CUSTOM_PLATFORM_VERSION)-$(CUSTOM_BUILD_DATE)-BETA-$(CUSTOM_BUILD_TYPE)
+CUSTOM_VERSION := MoonOS_$(CUSTOM_BUILD)-$(CUSTOM_MOON_VERSION)-$(CUSTOM_BUILD_DATE)-$(MOON_BUILD_TYPE)
 CUSTOM_VERSION_PROP := eleven
 
 ADDITIONAL_BUILD_PROPERTIES += \
-    org.pixelexperience.version=$(CUSTOM_VERSION_PROP) \
-    org.pixelexperience.version.display=$(CUSTOM_VERSION) \
-    org.pixelexperience.build_date=$(CUSTOM_BUILD_DATE) \
-    org.pixelexperience.build_date_utc=$(CUSTOM_BUILD_DATE_UTC) \
-    org.pixelexperience.build_type=$(CUSTOM_BUILD_TYPE)
+    ro.moon.version=$(CUSTOM_VERSION_PROP) \
+    ro.moon.version.display=$(CUSTOM_VERSION) \
+    ro.moon.version.number=$(CUSTOM_MOON_VERSION) \
+    ro.moon.version.name=$(CUSTOM_MOON_VERSION_NAME) \
+    ro.moon.build_date=$(CUSTOM_BUILD_DATE) \
+    ro.moon.build_date_utc=$(CUSTOM_BUILD_DATE_UTC) \
+    ro.moon.build_type=$(MOON_BUILD_TYPE)
