@@ -208,9 +208,6 @@ $(call inherit-product, vendor/moon/config/fonts.mk)
 # GApps
 $(call inherit-product, vendor/gapps/config.mk)
 
-# OTA
-$(call inherit-product, vendor/moon/config/ota.mk)
-
 # RRO Overlays
 $(call inherit-product, vendor/moon/config/rro_overlays.mk)
 
